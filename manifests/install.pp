@@ -59,15 +59,15 @@ class docker::install (
           }))
         }
         /docker-ce/ : {
-          ensure_resource('package', 'docker', merge($docker_hash, {
-                ensure => $ensure,
-                source => $docker::package_source,
-                name   => $docker::docker_ce_package_name,
-          }))
           ensure_resource('package', 'docker-ce-cli', merge($docker_hash, {
                 ensure => $ensure,
                 source => $docker::package_source,
                 name   => $docker::docker_ce_cli_package_name,
+          }))
+          ensure_resource('package', 'docker', merge($docker_hash, {
+                ensure => $ensure,
+                source => $docker::package_source,
+                name   => $docker::docker_ce_package_name,
           }))
         }
         default : {
